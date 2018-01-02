@@ -1,0 +1,46 @@
+{
+	"getCityList": {
+		"result": [
+			{
+				"cityName": "北京",
+				"cityId": 1,
+				"isChain": 1
+			},
+			{
+				"cityName": "石家庄",
+				"cityId": 8,
+				"isChain": 1
+			},
+			{
+				"cityName": "天津",
+				"cityId": 35,
+				"isChain": 1
+			},
+			{
+				"cityName": "上海",
+				"cityId": 37,
+				"isChain": 0
+			},
+			{
+				"cityName": "唐山",
+				"cityId": 40,
+				"isChain": 1
+			},
+			{
+				"cityName": "深圳",
+				"cityId": 43,
+				"isChain":0
+			},
+			{
+				"cityName": "重庆",
+				"cityId": 45,
+				"isChain": 1
+			},
+			{
+				"cityName": "厦门",
+				"cityId": 46,
+				"isChain": 0
+			}
+		]
+	}
+}
