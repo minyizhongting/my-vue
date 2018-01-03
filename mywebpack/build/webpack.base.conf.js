@@ -41,7 +41,7 @@ module.exports = {
 	resolve: {
 		alias: {
 			'vue$': 'vue/dist/vue.esm.js',
-			// '@': ROOT
+			'@': ROOT
 		},
 		extensions: ['.js', '.vue', '.json'] // 自动解析扩展名，使导入模块时可以不带扩展名
 	},

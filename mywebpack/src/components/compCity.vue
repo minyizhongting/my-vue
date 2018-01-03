@@ -1,6 +1,6 @@
 <template>
 	<div id="compCity">
-		<img src="../smile.png" alt="" class="smile">
+		<img :src="smileUrl" alt="" class="smile">
 		<label for="">城市名：</label>
 		<input type="text" placeholder="请输入城市名" v-model="cityName">
 		<button @click="getCityInfo()">Go</button>
@@ -12,12 +12,15 @@
 <script>
 	import cityList from './cityList';
 
+	import smileUrl from '@/static/smile.png';
+
 	export default{
 		name: 'compCity',
 		data: function() {
 			return {
 				cityName: '',
-				param: ''
+				param: '',
+				smileUrl: smileUrl
 			}
 		},
 		components: {

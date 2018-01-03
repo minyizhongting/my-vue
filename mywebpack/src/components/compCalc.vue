@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<hr>
-		<p>Calucation</p>
+		<p>Calculation</p>
 		<button @click="calc()">计算</button>
 		<input type="text" v-model="numa"> x <input type="text" v-model="numb"> = <input type="text" readonly="readonly" id="result" v-model="result">
 	</div>
@@ -9,7 +9,7 @@
 
 <script>
 
-	import {multi} from '../math.js'; // Tree shaking
+	import {multi} from '@/static/math.js'; // Tree shaking
 
 	export default {
 		name: 'compCalc',
