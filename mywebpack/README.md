@@ -1,7 +1,7 @@
 # vuejs webpack demo
 A simple vue & webpack demo.
 
-##Available scripts
+## Available scripts
 
 ### `npm run dev-server`
 
