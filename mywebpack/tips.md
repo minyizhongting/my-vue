@@ -2,12 +2,21 @@
 
 ## webpack tips
 
-webpack最出色的功能之一，除了JavaScript，还可以通过loader引入任何其他类型的文件。
+- webpack最出色的功能之一，除了JavaScript，还可以通过loader引入任何其他类型的文件。
 
-webpack-dev-server，是一个静态资源服务器，只用于开发环境，可以自动刷新，实际上是一个小型的express服务器。<br>
+- webpack-dev-server，是一个静态资源服务器，只用于开发环境，可以自动刷新，实际上是一个小型的express服务器。<br>
 和直接命令行里运行webpack不同的是，webpack-dev-server会把编译后的静态文件全部保存在内存里，而不会写入到文件目录内。
 
-若要包含后端服务器的express项目里，则使用webpack-dev-middleware和webpack-hot-middleware，实现浏览器的无刷新更新(hot reload)，也就是文档里常说的模块热替换(Hot Module Replacement或HMR)。
+- webpack-dev-server --open --inline --port 8090 --config webpack.config.js<br>
+其中，--inline选项会自动把webpack-dev-server客户端加入到webpack的入口文件配置中。若想省去hot和inline参数，可以在webpack.config.js中如下配置。<br>
+devServer: {
+    hot: true,
+    inline: true
+}
+<br>
+注：本地需安装webpack-dev-server，尽量不加hot参数。
+
+- 若要包含后端服务器的express项目里，则使用webpack-dev-middleware和webpack-hot-middleware，实现浏览器的无刷新更新(hot reload)，也就是文档里常说的模块热替换(Hot Module Replacement或HMR)。
 
 ### 概念
 
@@ -69,7 +78,7 @@ css的loader
 
 #### `CommonsChunkPlugin` 
 防止重复(prevent duplication) <br>
-将公共的依赖模块提取到已有的入口chunk中，或提取到一个新生成的chunk。
+提取代码块中的公共模块，将公共模块打包到一个独立的文件中去，以便在其他的入口和模块中使用。
 
 #### `cross-env` 
 windows不支持NODE=development的设置方式。 <br>

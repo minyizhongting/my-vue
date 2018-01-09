@@ -1,5 +1,5 @@
 {
-  "name": "mywebpack",
+  "name": "z",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -12,6 +12,8 @@
   "author": "Baihe",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "clean-webpack-plugin": "^0.1.17",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.7",

@@ -1,7 +1,8 @@
 <template>
 	<div class="infobox">
-		<label for="">城市信息：</label><br>
-		<p class="info" v-show="info.length">{{info}}</p>
+		<label for="">城市信息：</label>
+		<span class="info" v-if="info.length">{{info}}</span>
+		<span class="info" v-else>null</span>
 	</div>
 </template>
 
@@ -60,6 +61,6 @@
 </script>
 
 <style>
-.infobox{padding-top:20px;}
-.info{color:#ff8650;}
+	.infobox{padding-top:20px;}
+	.info{color:#ff8650;}
 </style>
