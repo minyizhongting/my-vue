@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div id="app">
+		<router-link to="/child1" tag="span">Child1</router-link>
+		<router-link to="/child2">Child2</router-link>
+		<br><br><br>
+		<router-view></router-view>
+	</div>
+
+<script src="../vuejs/vue.js"></script>
+<script src="../vuejs/vue-router.js"></script>
+<script>
+// 进入某个路由，需要从服务器获取数据，可通过两种方式实现。 
+//   1. 导航完成之后获取：先完成导航，然后再组件生命周期钩子中获取数据。在数据获取期间显示加载中之类的指示。
+//   2. 导航完成之前获取：导航完成前，在路由进入的守卫中获取数据，获取成功后执行导航。
+
+
+var Child1 = Vue.extend({
+	template: '<div>Child1</div>'
+});
+
+var Child2 = Vue.extend({
+	template: '<div>Child2</div>'
+});
+
+var routes = [
+	{
+		path: '/child1',
+		component: Child1
+	},
+	{
+		path: '/child2',
+		component: Child2
+	}
+];
+
+var router = new VueRouter({
+	routes
+});
+
+new Vue({
+	router
+}).$mount('#app');
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

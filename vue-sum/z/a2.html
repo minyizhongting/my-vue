@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+[v-clock]{display:none !important;}
+</style>
+<script src="../vuejs/vue.js"></script>
+</head>
+<body>
+	
+<div id="app" v-cloak>
+	
+	<p>{{msg}}</p>
+	<button v-on:click="counter += 1">add</button>
+	<p>counter: {{counter}}</p>
+	<button v-on:click="greet">greet</button>
+	<!-- greet($event) -->
+
+	<br><br>
+
+	<div v-on:click="outClick" style="padding:30px;border:1px solid red;">
+		<button v-on:click.stop="inClick">click</button>
+	</div>
+
+	<input type="checkbox" v-model="picked" v-bind:true-value="a" v-bind:false-value="b">
+	<p>{{picked}}</p>
+
+	<br>
+
+	<p>{{msg | reverseMsg}}</p>
+
+</div>
+
+
+
+<script>
+	
+var app = new Vue({
+	el: '#app',
+	data: {
+		msg: 'hahaha',
+		counter: 0,
+		picked: 'no',
+		a:'yes111',
+		b:'no222'
+	},
+	methods: {
+		greet: function(event) {
+			alert('hello ' + this.msg + '!');
+			if (event) { // 原生DOM事件
+				alert(event.target.tagName);
+			}
+		},
+		outClick: function() {
+			console.log('click outbox');
+		},
+		inClick: function() {
+			console.log('click inbox');
+		}
+	},
+	computed: {
+
+	},
+	filters: {
+		reverseMsg: function(value) {
+			return value.split('').reverse().join('');
+		}
+	}
+
+})
+
+
+</script>
+
+
+</body>
+</html>

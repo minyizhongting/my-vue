@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+span{border-bottom:1px solid red;}
+</style>
+<script src="../vuejs/vue.js"></script>
+</head>
+<body>
+	
+<div id="app">
+	
+	<Child my-message="hello"></Child>
+
+	<br><br>
+	<input type="text" v-model="parentMsg">
+	<br>
+	
+	<!-- <span is="Child" v-bind:my-message="parentMsg"></span> -->
+	<Child v-bind:my-message="parentMsg"></Child>
+	
+	<br><br>
+
+	<p>{{total}}</p>
+	<!-- 父组件可以直接在使用子组件的地方，用v-on来监听子组件触发的事件 -->
+	<button-counter v-on:increment="incrementTotal"></button-counter>
+	<button-counter v-on:increment="incrementTotal"></button-counter>
+
+	<br><br>
+
+	<one-component>
+		<p>这是一些初始内容</p>
+		<p>这是更多的初始内容</p>
+	</one-component>
+	<br>
+	<one-component></one-component>
+
+
+	<br><br>
+
+	<two-component>
+		<h4 slot="header">这是header</h4>
+		<p>这是一个段落。</p>
+		<p slot="footer">这是footer</p>
+	</two-component>
+
+	<br><br>
+
+	<two-component></two-component>
+
+	<br><br>
+
+
+</div>
+
+
+<script type="text/x-template" id="TwoCompTemplate">
+	<div>
+		<header>
+			<slot name="header"></slot>
+		</header>
+		<slot>
+			只有在没有要分发的内容时才会显示
+		</slot>
+		<footer>
+			<slot name="footer"></slot>
+		</footer>
+	</div>
+</script>
+
+
+<script>
+// 确保在初始化根实例之前注册组件
+
+// 父子组件的关系可以总结为prop向下传递，事件向上传递。
+
+// js中使用驼峰式命名，html中使用短横线分割式命名
+
+// $on(eventName) 监听事件
+// $emit(eventName) 触发事件
+
+Vue.component('Child', {
+	props: ['myMessage'],
+	template: '<span>{{myMessage}}</span>'
+});
+
+Vue.component('button-counter',{
+	template: '<button v-on:click="incrementCounter">{{counter}}</button>',
+	data: function() {
+		return {
+			counter: 0
+		}
+	},
+	methods: {
+		incrementCounter: function() {
+			this.counter += 1;
+			this.$emit('increment');	// 触发事件
+		}
+	}
+});
+
+// 单个插槽
+Vue.component('one-component', {
+	template: '<div>\
+			<h4>我是子组件的标题</h4>\
+			<slot>\
+				只有在没有要分发的内容时才会显示\
+			</slot>\
+		</div>'
+});
+
+// 具名插槽
+// 可以在js标签里使用type/x-template类型，指定id
+// 避免使用，因为这将模板和组件的其他定义分离了。
+
+Vue.component('two-component', {
+	template: '#TwoCompTemplate'
+});
+
+
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		'parentMsg': 'haha',
+		'total': 0		
+	},
+	methods: {
+		incrementTotal: function() {
+			this.total += 1;
+		}
+	}
+});
+
+
+	
+
+</script>
+
+
+
+</body>
+</html>

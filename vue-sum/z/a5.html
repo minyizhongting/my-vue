@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	[v-cloak]{display:none !important;}
+</style>
+</head>
+<body>
+	
+<div id="app" v-cloak>
+	<!-- <p>{{msg}}</p> -->
+	<Child @addtotal="addToTotal">hahaha</Child>
+	<Child @addtotal="addToTotal">
+		<div class="in" slot="in">
+			<p>ininin</p>
+		</div>
+	</Child>
+	<Child @addtotal="addToTotal"></Child>
+	<p>totalCount: {{totalCount}}</p>
+	
+	<br><br><hr><br>
+
+	<anchored :level="6">hello</anchored>
+	
+	
+
+	<blog-post>
+		<h1 slot="header">About Me</h1>
+		<p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
+		<p slot="footer">Copyright 2016 Evan You</p>
+		<p>If I have some content down here, it will also be included in vm.$slots.default.</p>
+	</blog-post>
+
+	<br><br><hr><br>
+
+	<p>{{msg | uppercase}}</p>
+
+
+
+</div>
+
+<!-- 可以使用template，也可以使用script模板 -->
+<template id="child1">
+	<div>
+		<button @click="addCounter">add {{counter}}</button>
+		<slot><span>默认显示的内容</span></slot>
+		<slot name="in"></slot>
+	</div>
+</template>
+
+<!-- <script type="text/template" id="child1">
+	<div>
+		<button @click="addCounter">add {{counter}}</button>
+	</div>
+</script> -->
+
+
+
+<script src="../vuejs/vue.js"></script>
+<script>
+
+Vue.component('Child', {
+	template: '#child1',
+	data: function() {
+		return {
+			counter: 0
+		}
+	},
+	methods: {
+		addCounter() {
+			this.counter += 1;
+			this.$emit('addtotal');
+		}
+	}
+});
+
+Vue.component('anchored', {
+	render(createElement) {
+		var body = this.$slots.default;
+		return createElement(
+			'h' + this.level,
+			this.$slots.default
+		)
+	},
+	props: {
+		level: {
+			type: Number,
+			required: true
+		}
+	}
+})
+
+Vue.component('blog-post', {
+	render(createElement) {
+		var header = this.$slots.header;
+		var main = this.$slots.default;
+		var footer = this.$slots.footer;
+
+		return createElement('div',[
+			createElement('header', header),
+			main,
+			createElement('footer', footer)
+		]);
+	}
+})
+
+
+
+
+	
+var app = new Vue({
+	el: '#app',
+	data: {
+		msg: 'hello',
+		totalCount: 0
+	},
+	methods: {
+		addToTotal() {
+			this.totalCount += 1;
+		}
+	},
+	filters: {
+		uppercase(value) {
+			if (!value) {
+				return;
+			}
+			value = value.toString();
+			return value.toUpperCase();
+		}
+	}
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

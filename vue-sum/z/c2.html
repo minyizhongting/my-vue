@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<router-link to="/home">Home</router-link>
+			<router-link to="/about">About</router-link>
+			<router-link to="/haha">Haha Redirect</router-link>
+			<router-link to="/hoho">Hoho Alias</router-link>
+			<br><br>
+			<router-link to="/user/123">User</router-link>
+			<router-link to="/user/profile">User profile</router-link>
+		</div>
+		<br><br>
+		<!-- 命名视图 -->
+		<router-view class="view one"></router-view>
+		<router-view class="view two" name="a"></router-view>
+		<router-view class="view three" name="b"></router-view>
+	</div>
+
+<script src="../vuejs/vue.js"></script>
+<script src="../vuejs/vue-router.js"></script>
+<script>
+
+var Home = Vue.extend({
+	template: '<div>home</div>'
+});
+
+var otherA = Vue.extend({
+	template: '<div>othera</div>'
+});
+
+var otherB = Vue.extend({
+	template: '<div>otherb</div>'
+});
+
+var About = Vue.extend({
+	template: '<div>about</div>'
+});
+
+var User = Vue.extend({
+	props: ['id'],	// 使用props将组件和路由解耦
+	template: '<div>User {{id}}</div>',
+	// template: '<div>User {{$route.params.id}}</div>'	// 在组件中使用$route会使与其对应路由形成高度耦合，使组件只能在某些特定的url上使用，限制了其灵活性
+});
+
+var Profile = Vue.extend({
+	template: '<div>profile info</div>'
+});
+
+var Guard = Vue.extend({
+	template: '<div>Guard</div>',
+	beforeRouteEnter(to, from, next) {
+		// 在渲染该组件的对应路由被confirm前调用
+		// 不能获取组件实例this
+		// 因为当守卫执行前，组件实例还没被创建
+	},
+	beforeRouteUpdate(to, from, next) {
+		// 在当前路由改变，但是该组件被复用时调用
+		// 可以访问组件实例this
+	},
+	beforeRouteLeave(to, from, next) {
+		// 导航离开该组件的对应路由时调用
+		// 可以访问组件实例this
+	}
+})
+
+// 若想同时展示多个视图，而不是嵌套展示，例如sidebar和main两个视图，这时可使用命名视图。
+// 对于同一个路由，多个视图需要多个组件，确保正确使用components设置(带上s)
+var routes = [ // routes配置中的每个路由对象称为路由记录，路由记录是可以嵌套的，因此可能匹配多个路由记录。路由匹配到的所有路由会暴露为$routea对象的$route.matched数组。
+	{
+		path: '/home',
+		components: {
+			default: Home,
+			a: otherA,
+			b: otherB
+		},
+		alias: '/hoho'
+	},
+	{
+		path: '/about',
+		name: 'aboutName',
+		components: {
+			default: About,
+			a: otherB,
+			b: otherA
+		},
+		beforeEnter: (to, from, next) => { // 在路由配置上直接定义beforeEnter守卫
+ 			console.log('路由独享的守卫...');	// 与全局前置守卫方法参数一样
+ 			next();
+		}
+	},
+	{
+		path: '/haha',
+		redirect: '/about'	// 重定向
+		// redirect: {name: 'aboutName'}	// 重定向目标也可以是一个命名的路由
+		// redirect: to => {	// 甚至是一个方法，动态返回重定向目标
+		// 	// 方法接受目标路由作为参数，return重定向的字符串路径/路径对象
+		// 	return '/about';
+		// }
+	},
+	{
+		path: '/user/:id',
+		// component: User,
+		// props: true,		// 若props被设置为true，route.params将会被设置为组件属性
+
+		components: {	// 对于包含命名视图的路由，必须分别为每个命名视图添加props选项
+			default: User,
+			a: otherA
+		},
+		props: {default: true, a: false},	// 若props是一个对象，它会被按原样设置为组件属性，当props是静态的时候有用
+		meta: {requiresAuth: true}, // 路由元信息
+		children: [
+			{
+				path: '/profile',
+				components: Profile
+			}
+		]
+	}
+];
+
+var router = new VueRouter({
+	routes
+});
+
+// 导航守卫，用来通过跳转或取消的方式守卫导航。
+
+// 全局守卫，可以使用router.beforeEach注册一个全局前置守卫。
+// 当一个导航触发时，全局前置守卫按创建顺序调用。守卫是异步解析执行，此时导航在所有守卫resolve之前一直处于等待中。
+// 确保调用next方法，否则钩子就不会被resolved。
+router.beforeEach((to, from, next) => { 
+	console.log('全局前置守卫...');
+	console.log(to.matched);
+	if (to.matched.some(record => record.meta.requiresAuth)) {
+		console.log('get meta');
+	}
+	next();
+});
+// to：(Route) 即将要进入的目标路由对象
+// from：(Route) 当前导航正要离开的路由
+// next：(Function) 一定要调用该方法来resolve这个钩子，执行效果依赖next方法的调用参数。
+
+// 全局后置钩子，和守卫不同的是，这些钩子不会接受next函数也不会改变导航本身。
+router.afterEach((to, from) => {
+	console.log('全局后置守卫...');
+});
+
+
+
+
+new Vue({
+	router
+}).$mount('#app');
+
+
+// 重定向：当用户访问/a时，URL将会替换为/b，然后匹配路由/b
+// 别名：/a的别名是/b。即当用户访问/b时，URL会保持为/b，但路由匹配为/a，就像用户访问/a一样。
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

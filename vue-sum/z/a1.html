@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+
+</head>
+<body>
+	
+<div id="app">
+	<span v-bind:title="message">mouseover</span>
+	<br>
+	<button v-on:click="hide">click</button>
+	<p v-if="seen">hahaha</p>
+	<br>
+	<ul>
+		<li v-for="todo in todos">{{todo.text}}</li>
+	</ul>
+	<input v-model="abc" type="text" value="">
+	<p>{{abc}}</p>
+	<br>
+	<br><br>
+	<ul>
+		<todo-item v-for="item in todos" v-bind:todo='item' v-bind:key='item.text'></todo-item>
+	</ul>
+	<p v-once>txt: {{txt}}</p>
+	<p>{{reversedMsg}}</p>
+	<p>{{reverseMethod()}}</p>
+
+	<br><br>
+	<div v-if="Math.random() > 0.5">now you see me</div>
+	<div v-else>now you don't</div>
+	<template v-if="loginType==1">
+		<label>Username</label>
+		<input type="text" placeholder="enter username" key="username-input">
+	</template>
+	<template v-else>
+		<label>Email</label>
+		<input type="text" placeholder="enter email" key="email-input">
+	</template>
+	<button v-on:click="changeType()">changetype</button>
+	<p v-show='ok'>abcde</p>
+</div>
+
+<script src="../vuejs/vue.js"></script>
+
+<script>
+
+Vue.component('todo-item', {
+	props: ['todo'],
+	template: '<li>{{todo.text}}</li>'
+})	
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		ok:true,
+		loginType:1,
+		abc: '',
+		message:'hahaha: ' + new Date().toLocaleString(),
+		txt: 'hahahahahahahaha',
+		seen: true,
+		todos: [
+			{text: 'a'},
+			{text: 'b'},
+			{text: 'c'}
+		],
+		htmltxt: '<p>aaa<br>bbb</p>'
+	},
+	created: function() {
+		console.log('txt is : ' + this.txt);
+	},
+	mounted: function() {
+		console.log('mounted!');
+	},
+	methods: {
+		hide: function() {
+			this.seen = false;
+		},
+		changeType: function() {
+			this.loginType = this.loginType == 1 ? 2 : 1;
+		},
+		reverseMethod: function() {
+			return this.message.split('').reverse().join('') + Date.now()
+		}
+	},
+	computed: { // 不需要经常修改的，涉及大批量计算的使用计算属性 
+		reversedMsg: function() {
+			return this.message.split('').reverse().join('') + Date.now();
+		}
+	}
+});
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
