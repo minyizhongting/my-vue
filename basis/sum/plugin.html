@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+<script>
+	
+//插件。
+/*插件通常为Vue添加全局功能，插件的范围没有限制，一般有以下几种：
+*1. 添加全局方法或者属性，如vue-element
+*2. 添加全局资源：指令/过滤器/过渡等，如vue-touch
+*3. 通过全局mixin方法添加一些组件选项，如vuex
+*4. 添加Vue实例方法，通过把它们添加到Vue.prototype上实现
+*5. 一个库，提供自己的API，同时提供上面提到的一个或多个功能，如vue-router
+*/
+//Vue的插件应当有一个公开方法install，第一个参数是Vue构造器，第二个是一个可选的选项对象。
+
+MyPlugin.install = function(vue,options){
+
+	Vue.myGlobalMethod = function(){
+	};
+
+	Vue.directive('my-directive',{
+		bind: function(el, binding, vnode){
+		}
+	});
+
+	Vue.mixin({
+		created: function(){
+		}
+	});
+
+	Vue.prototype.$myMethod = function(options){
+	};
+
+};
+
+//通过全局方法Vue.use()使用插件。
+Vue.use(MyPlugin);	//调用MyPlugin.install(vue)
+
+//也可传入一个选项对象
+Vue.use(MyPlugin, {someOption: true});
+
+//Vue.use会自动阻止注册相同插件多次，届时只会注册一次该插件。
+//一些插件，如vue-router如果Vue是全局变量则自动调用Vue.use()。不过在模块环境中应当始终显式调用Vue.use()。
+
+//通过Browserify或Webpack使用CommonJS兼容模块
+var Vue = require('vue');
+var VueRouter = require('vue-router');
+
+Vue.use(VueRouter);
+
+
+
+//很多Vue项目中，使用Vue.component来定义全局组件，接着用new Vue({ el: '#container' })在每个页面内指定一个容器元素。
+
+//缺点：要求每个component中的命名不能重复，缺乏语法高亮，不支持CSS，没有构建步骤。
+
+//扩展名为.vue的单文件组件为以上问题提供了解决方案。并且还可以使用Webpack或Browserify等构建工具。
+
+	
+</script>
+
+</body>
+</html>

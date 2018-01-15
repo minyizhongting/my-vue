@@ -20,7 +20,7 @@ module.exports = {
 			{
 				test: /\.css$/,
 				// use: [
-				// 	'vue-style-loader',
+				// 	'vue-style-loader',  // 通过它，style自行热重载
 				// 	'css-loader'
 				// ]
 				use: ExtractTextPlugin.extract({

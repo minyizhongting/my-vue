@@ -30,6 +30,8 @@
 </script>
 
 <style scoped>
+/* 若希望scoped样式中的选择器可以影响子组件，可以使用>>>操作符 */
+/* SASS中用/deep/代替>>> */
 	.red{color:red;}
 	>>> .total{color:green;}
 </style>

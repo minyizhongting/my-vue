@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+<div>
+	<p>nickName: <span id="nickName"></span></p>
+	<button id="btn">click</button>
+</div>
+
+
+<script>
+	var userInfo = {};
+
+	// 给对象o定义新的属性b，并且定义属性b的get和set方法。
+	// 当o.b时，会调用b属性的get方法。
+	// 给o.b赋值时，会调用set方法。
+	// 这就是修改数据时，视图会自动更新的关键
+	Object.defineProperty(userInfo, 'nickName', {
+		get: function() {
+			return document.getElementById('nickName').innerHTML;
+		},
+		set: function(nick) {
+			document.getElementById('nickName').innerHTML = nick;
+		}
+	});
+
+	document.getElementById('btn').onclick = function() {
+		userInfo.nickName = 'hahaha';
+	}
+
+	// VueJS是使用ES5提供的Object.defineProperty()方法，监控对数据的操作，从而可以自动触发数据同步。
+
+</script>
+
+</body>
+</html>
