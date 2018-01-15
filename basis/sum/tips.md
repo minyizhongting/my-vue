@@ -15,7 +15,6 @@
 <style lang="sass">
 write SASS! 
 </style>
-
 ```
 
 - `<template>` <br>
