@@ -27,7 +27,7 @@
 				this.$http.get(url).then((response) => {
 					console.log('get data success...');
 					var result = '';
-					var obj = response.body.result;
+					var obj = response.data.result;
 					obj.forEach(function(item, idx, arr) {
 						if (item.cityName == _this.city) {
 							result = JSON.stringify(item);
