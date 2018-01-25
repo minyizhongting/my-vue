@@ -12,7 +12,7 @@ import '@/static/index.css';
 // Vue.use(VueResource);
 
 // axios不是vue插件，所以只能在每个需要发送请求的组件中即时引入。
-// 为了解决这个问题，在引入axios之后，通过修改原型连，来更方便的使用。
+// 为了解决这个问题，在引入axios之后，通过修改原型链，来更方便的使用。
 Vue.prototype.$http = axios;
 
 new Vue({
