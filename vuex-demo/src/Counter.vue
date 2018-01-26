@@ -3,7 +3,7 @@
 		Clicked: {{$store.state.count}} times, count is {{evenOrOdd}}.<br><br>
 		<button @click="increment">+</button>
 		<button @click="decrement">-</button>
-		<button @click="incrementIfOdd">Increment if odd</button>
+		<button @click="incrementIfOdd" :disabled="ifDisabled">Increment if odd</button>
 		<button @click="incrementAsync">Increment async</button>
 	</div>
 </template>
@@ -13,7 +13,8 @@
 
 	export default {
 		computed: mapGetters([
-			'evenOrOdd'
+			'evenOrOdd',
+			'ifDisabled'
 		]),
 		methods: mapActions([
 			'increment',

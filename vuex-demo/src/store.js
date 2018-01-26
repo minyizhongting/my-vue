@@ -7,8 +7,10 @@ const state = {
 	count: 0
 };
 
+// 将disabled绑定到一个布尔值上，如果为真，则disabled属性就加在button上
 const getters = {
-	evenOrOdd: state => state.count % 2 == 0 ? 'even' : 'odd'
+	evenOrOdd: state => state.count % 2 == 0 ? 'even' : 'odd',
+	ifDisabled: state => state.count % 2 == 0 ? true : false 
 };
 
 const mutations = {
