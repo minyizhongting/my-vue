@@ -40,8 +40,12 @@
 		line-height:$lh;
 	}
 
+	.bg-yellow {
+		background-color: $yellow;
+	}
+
 	.nav {
-		background-color:$yellow;
+		@extend .bg-yellow;		// 选择器继承，即一个选择器可以继承另一个选择器定义的所有样式
 		padding:15px;
 		> a {
 			$color:#fff;
