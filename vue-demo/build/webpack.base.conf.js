@@ -29,8 +29,58 @@ module.exports = {
 				})
 			},
 			{
+				test: /\.scss$/,
+				use: [
+					'vue-style-loader',
+					'css-loader',
+					'sass-loader'
+				]
+			},
+			{
+				test: /\.sass$/,
+				use: [
+					'vue-style-loader',
+					'css-loader',
+					'sass-loader?indentedSyntax'
+				]
+			},
+			{
 				test: /\.vue$/,
-				use: 'vue-loader'
+				loader: 'vue-loader',
+				options: {
+					loaders: {
+						// Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            			// the "scss" and "sass" values for the lang attribute to the right configs here.
+      //       			// other preprocessors should work out of the box, no loader config like this necessary.
+
+      					// 将组件中的样式也打包到独立文件中
+
+						// 'scss': ExtractTextPlugin.extract({
+						// 	fallback: 'vue-style-loader',
+						// 	use: 'css-loader!sass-loader'
+						// }),
+						// 'sass': ExtractTextPlugin.extract({
+						// 	fallback: 'vue-style-loader',
+						// 	use: 'css-loader!sass-loader?indentedSyntax'
+						// }),
+						// css: ExtractTextPlugin.extract({
+						// 	fallback: 'vue-style-loader',
+						// 	use: 'css-loader'
+						// })
+
+						'scss': [
+							'vue-style-loader',
+							'css-loader',
+							'sass-loader'
+			            ],
+			            'sass': [
+			                'vue-style-loader',
+			                'css-loader',
+			                'sass-loader?indentedSyntax'
+			            ]
+					}
+					// other vue-loader options go here
+				}
 			},
 			{
 				test: /\.js$/,
@@ -55,6 +105,10 @@ module.exports = {
 		extensions: ['.js', '.vue', '.json'] // 自动解析扩展名，使导入模块时可以不带扩展名
 	},
 	plugins: [
+		// new ExtractTextPlugin({ // 打包后无法热更新
+		// 	filename: 'style.css',
+		// 	allChunks: true
+		// }),
 		new ExtractTextPlugin('style.css'),
 		new HtmlWebpackPlugin({
 			template: ROOT + '/src/index.html',

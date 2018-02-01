@@ -7,6 +7,9 @@
 </template>
 
 <script>
+
+	// import axios from 'axios';
+
 	export default {
 		name: 'cityList',
 		props: {
@@ -24,6 +27,27 @@
 			getCities() {
 				var url = '/city/getCityList';
 				var _this = this;
+
+				// ajax获取数据成功后会返回一个response对象，包含以下内容：
+				// {
+				// 	data: {},
+				// 	status: 200,
+				// 	statusText: 'OK',
+				// 	headers: {},
+				// 	config: {}
+				// }
+
+				// 请求
+				// axios({
+				// 	method: 'post',
+				// 	url: '/user',
+				// 	data: {
+				// 		name: 'haha',
+				// 		info: 'aa'
+				// 	}
+				// });
+
+				// axios.get(url).then((response) => {
 				this.$http.get(url).then((response) => {
 					console.log('get data success...');
 					var result = '';
