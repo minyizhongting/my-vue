@@ -26,7 +26,8 @@
 	$yellow: #f7c002;
 
 	// 可以给参数指定默认值，参数默认值使用$name: default-value的形式
-	
+	// 声明的@mixin通过@include来调用
+
 	// @mixin nav-font() {
 	// 	font-size:18px;
 	// 	line-height:24px;
