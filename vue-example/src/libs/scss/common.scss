@@ -1,0 +1,26 @@
+// 分隔线、边框
+$borderColor: #f0f2f5;
+// 标题、强化
+$mainStrong: #283039;
+// 正文
+$main: #727682;
+//弱化/辅助文案
+$mainWeak: #bec1ca;
+
+// 蓝色
+$blue: #0074ff;
+// 绿色
+$green: #0bdba8;
+// 红色
+$red: #f52f3e;
+
+// 字体
+$size18: 18px;
+$size16: 16px;
+$size14: 14px;
+$size12: 12px;
+
+@mixin bg($route,$name){
+    background:url('https://static.example.com/#{$route}/#{$name}.png') no-repeat;
+    background-size: cover;
+}
