@@ -14,21 +14,21 @@
             <com-button type="main" v-if="!hasNext" @click="nextQuestionHandle">下一题</com-button>
             <com-button type="main" v-else @click="nextQuestionHandle(1)">提交</com-button>
         </div>
-        <Alertbox :show="alertFlag" :alert-title="'请选择答案'">
+        <alert-box :show="alertFlag" :alert-title="'请选择答案'">
             <!-- desc描述 -->
+            <!-- desc -->
             <com-button type="main" slot="alert-btn" @click="confirmAlertbox">确定</com-button>
-            <!--<com-button type="minor" slot="alert-btn" @click="cancelAlertbox">取消</com-button>-->
-        </Alertbox>
+        </alert-box>
     </div>
 </template>
 
 <script>
-    import Alertbox from '@/common/Alertbox'
+    import AlertBox from '@/common/AlertBox'
     import ComButton from '@/common/ComButton'
     import {mapState, mapGetters, mapMutations} from 'vuex'
     export default {
         name: 'answer',
-        components: { Alertbox, ComButton },
+        components: { AlertBox, ComButton },
         data() {
             return {
                 msg: 'index',

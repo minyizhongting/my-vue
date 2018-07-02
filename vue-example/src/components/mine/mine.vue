@@ -25,12 +25,22 @@
                 <img :src="renderData.imgUrl" alt="" :class="renderData.imgStyle">
             </div>
         </div>
+        <h6>组件</h6>
+        <div class="comp-box">
+            <com-button type="main" @click="showAlertBox">弹窗</com-button>
+            <alert-box :show="alertFlag" :alertTitle="'弹窗标题'">
+                <com-button type="main" @click="closeAlertBox" slot="alert-btn">确定</com-button>
+            </alert-box>
+        </div>
     </div>
 </template>
 
 <script>
+    import AlertBox from '@/common/AlertBox'
+    import ComButton from '@/common/ComButton'
     export default {
         name: 'mine',
+        components: {AlertBox,ComButton},
         data() {
             return {
                 mockdata: '',
@@ -39,7 +49,8 @@
                     info: 'mine',
                     imgUrl: '',
                     imgStyle: ''
-                }
+                },
+                alertFlag: false
             }
         },
         mounted() {
@@ -112,6 +123,12 @@
                     self.renderData.imgStyle = 'y-aspect';
                 }
                 self.renderData.imgUrl = src;
+            },
+            showAlertBox() {
+                this.alertFlag = true;
+            },
+            closeAlertBox() {
+                this.alertFlag = false;
             }
         }
     }

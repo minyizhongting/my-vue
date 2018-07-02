@@ -18,7 +18,7 @@
 <script>
     import ComButton from '@/common/ComButton'
     export default {
-        name: 'Alertbox',
+        name: 'AlertBox',
         components: {ComButton},
         props: {
             show: Boolean,
