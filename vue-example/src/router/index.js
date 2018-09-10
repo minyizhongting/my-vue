@@ -1,52 +1,52 @@
 const routes = [
-    {
-        path: '/',
-        name: 'index',
-        meta: {
-            title: '首页'
-        },
-        component: (resolve) => require(['@/components/index'], resolve)
+  {
+    path: '/',
+    name: 'index',
+    meta: {
+      title: '首页'
     },
-    {
-        path: '/mine',
-        name: 'mine',
-        meta: {
-            title: '我的'
-        },
-        component: (resolve) => require(['@/components/mine/mine'], resolve)
+    component: (resolve) => require(['@/components/index'], resolve)
+  },
+  {
+    path: '/mine',
+    name: 'mine',
+    meta: {
+      title: '我的'
     },
-    {
-        path: '/survey',
-            name: 'survey',
-        meta: {
-        title: '答题'
-        },
-        component: (resolve) => require(['@/components/survey/survey'], resolve),
+    component: (resolve) => require(['@/components/mine/mine'], resolve)
+  },
+  {
+    path: '/survey',
+    name: 'survey',
+    meta: {
+      title: '答题'
     },
-    {
-        path: '/survey/answer',
-            name: 'answer',
-        meta: {
-            title: '答题ing'
-        },
-        component: (resolve) => require(['@/components/survey/answer'], resolve)
+    component: (resolve) => require(['@/components/survey/survey'], resolve),
+  },
+  {
+    path: '/survey/answer',
+    name: 'answer',
+    meta: {
+      title: '答题ing'
     },
-    {
-        path: '/survey/result',
-            name: 'result',
-        meta: {
-            title: '答题结果'
-        },
-        component: (resolve) => require(['@/components/survey/result'], resolve)
+    component: (resolve) => require(['@/components/survey/answer'], resolve)
+  },
+  {
+    path: '/survey/result',
+    name: 'result',
+    meta: {
+      title: '答题结果'
     },
-    {
-        path: '/help',
-            name: 'help',
-        meta: {
-            title: '帮助中心'
-        },
-        component: (resolve) => require(['@/components/help/help'], resolve)
-    }
+    component: (resolve) => require(['@/components/survey/result'], resolve)
+  },
+  {
+    path: '/help',
+    name: 'help',
+    meta: {
+      title: '帮助中心'
+    },
+    component: (resolve) => require(['@/components/help/help'], resolve)
+  }
 ];
 
 export default routes;

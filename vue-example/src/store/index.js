@@ -6,8 +6,8 @@ import help from './modules/help'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules: {
-        survey,
-        help
-    }
+  modules: {
+    survey,
+    help
+  }
 });

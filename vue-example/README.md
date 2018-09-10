@@ -1,6 +1,6 @@
 # vue-demo
 
-> A Vue.js project
+> A Vue.js project by vue-cli
 
 ## Build Setup
 
