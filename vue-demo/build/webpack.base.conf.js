@@ -1,12 +1,12 @@
 var path = require('path');
 var webpack = require('webpack'); //用于访问内置插件
 var HtmlWebpackPlugin = require('html-webpack-plugin'); // 重新生成dist中html文件
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); // 将入口chunk中引用的*.css移动到独立分离的css文件，样式不再内嵌在js中
 
 var ROOT = require('../config/paths').ROOT;
 var SRC = require('../config/paths').SRC;
 
 module.exports = {
+  mode: 'development',
   entry: [
     ROOT + '/src/index.js'
   ],
@@ -19,14 +19,10 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        // use: [
-        // 	'vue-style-loader',  // 通过它，style自行热重载
-        // 	'css-loader'
-        // ]
-        use: ExtractTextPlugin.extract({
-          fallback: 'vue-style-loader',
-          use: 'css-loader'
-        })
+        use: [
+        	'vue-style-loader',  // 通过它，style自行热重载
+        	'css-loader'
+        ]
       },
       {
         test: /\.scss$/,
@@ -105,11 +101,6 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'] // 自动解析扩展名，使导入模块时可以不带扩展名
   },
   plugins: [
-    // new ExtractTextPlugin({ // 打包后无法热更新
-    // 	filename: 'style.css',
-    // 	allChunks: true
-    // }),
-    new ExtractTextPlugin('style.css'),
     new HtmlWebpackPlugin({
       template: ROOT + '/src/index.html',
       hash: true,
