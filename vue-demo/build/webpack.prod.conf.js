@@ -10,16 +10,16 @@ var ManifestPlugin = require('webpack-manifest-plugin'); // 生成manifest.json�
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // 压缩js
 
 module.exports = merge(base, {
-	plugins: [
-		new CleanWebpackPlugin(['dist'], { //config: solve the error "must be inside the project root. Skipping..."
-			root: ROOT,
-			verbose: true
-		}),
-		new ManifestPlugin(),
-		new UglifyJSPlugin({
-			sourceMap: true
-		}),
-		new webpack.BannerPlugin('Created by Baihe'), // 打包后代码添加头部注释
-	]
+  plugins: [
+    new CleanWebpackPlugin(['dist'], { //config: solve the error "must be inside the project root. Skipping..."
+      root: ROOT,
+      verbose: true
+    }),
+    new ManifestPlugin(),
+    new UglifyJSPlugin({
+      sourceMap: true
+    }),
+    new webpack.BannerPlugin('Created by Baihe'), // 打包后代码添加头部注释
+  ]
 });
 

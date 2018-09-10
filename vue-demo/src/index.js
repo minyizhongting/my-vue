@@ -2,7 +2,6 @@ import Vue from 'vue';
 // import VueResource from 'vue-resource';  // 不再推荐使用
 import axios from 'axios';
 import router from './routes/';
-import store from './store';
 import App from './App.vue';
 
 
@@ -17,8 +16,7 @@ import '@/static/index.css';
 Vue.prototype.$http = axios;
 
 new Vue({
-	el: '#app',
-	store,
-	router,
-	render: (h) => h(App)
+  el: '#app',
+  router,
+  render: (h) => h(App)
 });

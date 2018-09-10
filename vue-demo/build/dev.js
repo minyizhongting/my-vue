@@ -11,8 +11,8 @@ var proxy = require('http-proxy-middleware');	// 把请求代理转发到其他�
 
 // proxy中间件的选择项
 var options = {
-	target: 'http://localhost:9090/city',	// 目标服务器host
-	changeOrigin: true	// 默认false，是否需要改变原始主机头为目标URL
+  target: 'http://localhost:9090/city',	// 目标服务器host
+  changeOrigin: true	// 默认false，是否需要改变原始主机头为目标URL
 };
 // 创建代理
 var exampleProxy = proxy(options);
@@ -22,14 +22,14 @@ app.use('/city', exampleProxy);
 // Tell express to use the webpack-dev-middleware and use the config.js
 // configuration file as a base.
 app.use(webpackDevMiddleware(compiler, {
-	noInfo: true,
-	publicPath: config.output.publicPath
+  noInfo: true,
+  publicPath: config.output.publicPath
 }));
 
 app.use(webpackHotMiddleware(compiler, {
-	log: console.log
+  log: console.log
 }));
 
-app.listen(8090, function() {
-	console.log('Server listening on port 8090!\n');
+app.listen(8090, function () {
+  console.log('Server listening on port 8090!\n');
 });

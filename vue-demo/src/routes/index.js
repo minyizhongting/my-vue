@@ -5,7 +5,7 @@ import routes from './map/';
 Vue.use(VueRouter);
 
 var router = new VueRouter({
-	routes
+  routes
 });
 
 export default router;
