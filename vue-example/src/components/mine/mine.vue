@@ -29,6 +29,7 @@
     <div class="comp-box">
       <com-button type="main" @click="showAlertBox">弹窗</com-button>
       <alert-box :show="alertFlag" :alertTitle="'弹窗标题'">
+        desc
         <com-button type="main" @click="closeAlertBox" slot="alert-btn">确定</com-button>
       </alert-box>
     </div>
@@ -41,7 +42,7 @@
 
   export default {
     name: 'mine',
-    components: {AlertBox, ComButton},
+    components: { AlertBox, ComButton },
     data() {
       return {
         mockdata: '',
@@ -207,7 +208,6 @@
         width: 100%;
         height: 100%;
         display: flex;
-        flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
         .x-aspect {

@@ -12,11 +12,11 @@
 
 <script>
   import ComButton from '@/common/ComButton'
-  import {mapState, mapGetters, mapActions} from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'result',
-    components: {ComButton},
+    components: { ComButton },
     data() {
       return {}
     },
@@ -36,8 +36,6 @@
         resetData: 'resetData'
       }),
       goSurvey() {
-        this.resetData();   // actions
-        // this.$store.commit('survey/resetAllData');
         this.$router.push({path: '/survey'});
       }
     }
@@ -49,7 +47,6 @@
 
   .bh-result {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: center;
     padding-top: 100px;
   }

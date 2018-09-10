@@ -33,7 +33,6 @@
     width: 100%;
     height: calc(100% - 80px);
     display: flex;
-    flex-flow: row nowrap;
     justify-content: flex-start;
   }
 

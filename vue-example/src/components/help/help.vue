@@ -32,9 +32,9 @@
 </template>
 
 <script>
-  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
-  // import {createNamespacedHelpers} from 'vuex'
-  // const {mapState, mapGetters, mapMutations, mapActions} = createNamespacedHelpers('help')
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+  // import { createNamespacedHelpers } from 'vuex'
+  // const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpers('help')
   // 也可以通过使用createNamespacedHelpers创建基于某个命名空间的辅助函数
   export default {
     name: 'help',
@@ -88,9 +88,6 @@
         incrementAsync: 'incrementAsync'
       }),
 
-      // async用于声明一个function是异步的，await用于等待一个异步方法执行完成
-      // await只能出现在async函数中
-      // 调用一个async函数时，会返回一个Promise对象
       timeout(seconds) {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -98,6 +95,9 @@
           }, seconds);
         })
       },
+      // async用于声明一个function是异步的，await用于等待一个异步方法执行完成
+      // await只能出现在async函数中
+      // 调用一个async函数时，会返回一个Promise对象
       async asyncCall() {
         console.log('calling');
         const result = await this.timeout(2000);
@@ -105,16 +105,9 @@
         this.asyncNum += 100;
       },
       // 不使用async/await实现异步
-      timeout1(seconds) {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve('resolved');
-          }, seconds);
-        })
-      },
       asyncCall1() {
         console.log('calling');
-        this.timeout1(2000).then((data) => {
+        this.timeout(2000).then((data) => {
           console.log(data);
           this.asyncNum += 100;
         })
@@ -126,6 +119,8 @@
 
 <style lang="scss">
   .bh-help {
+    height: 100%;
+    overflow-y: scroll;
     .con-top {
       line-height: 40px;
       p {
@@ -141,6 +136,9 @@
     .title {
       font-weight: bold;
       color: #fabe00;
+    }
+    button {
+      padding: 3px;
     }
   }
 </style>

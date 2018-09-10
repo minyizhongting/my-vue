@@ -26,11 +26,11 @@
 <script>
   import AlertBox from '@/common/AlertBox'
   import ComButton from '@/common/ComButton'
-  import {mapState, mapGetters, mapMutations} from 'vuex'
+  import { mapState, mapGetters, mapMutations } from 'vuex'
 
   export default {
     name: 'answer',
-    components: {AlertBox, ComButton},
+    components: { AlertBox, ComButton },
     data() {
       return {
         msg: 'index',
@@ -107,7 +107,6 @@
 
   .bh-answer {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: center;
     padding-top: 100px;
   }

@@ -20,6 +20,7 @@ $size16: 16px;
 $size14: 14px;
 $size12: 12px;
 
+// example: background-image
 @mixin bg($route,$name) {
   background: url('https://static.example.com/#{$route}/#{$name}.png') no-repeat;
   background-size: cover;

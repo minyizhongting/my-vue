@@ -49,7 +49,6 @@
     height: 100%;
     background: rgba(0, 0, 0, .5);
     display: flex;
-    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     .alert-box {

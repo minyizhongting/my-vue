@@ -9,21 +9,24 @@
 
 <script>
   import ComButton from '@/common/ComButton'
-  import {mapMutations} from 'vuex';
+  import { mapMutations, mapActions } from 'vuex';
 
   export default {
     name: 'survey',
-    components: {ComButton},
+    components: { ComButton },
     data() {
       return {}
     },
     mounted() {
-      this.resetAllData();
+      // this.resetData();  // actions
+      this.$store.dispatch('survey/resetData');
     },
     methods: {
       ...mapMutations('survey', {
-        resetAllData: 'resetAllData',
         beginTimeHandle: 'beginTimeHandle'
+      }),
+      ...mapActions('survey', {
+        resetData: 'resetData'
       }),
       beginSurvey() {
         this.beginTimeHandle();
@@ -38,7 +41,6 @@
 
   .bh-survey {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: center;
     padding-top: 100px;
   }
