@@ -6,7 +6,7 @@ export default [
     alias: '/home',
     component(resolve) {
       // require(['#/views/Home'], resolve);
-      // 这样写最后生成的js文件名是webpack生成的一堆数字，不友好，解决方案是require.ensure([], function() {})
+      // require.ensure([], function() {}, String)，此API的第三个参数是给这个模块命名，否则chunkFilename中的[name]是一个自动分配的、可读性差的id，最后生成的js文件名不友好
       require.ensure(['#/views/Home'], function (require) {
         require(['#/views/Home'], resolve);
       }, 'home');

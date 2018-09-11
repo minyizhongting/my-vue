@@ -10,6 +10,8 @@ module.exports = {
   entry: [
     ROOT + '/src/index.js'
   ],
+  // filename是对应于entry生成的文件名
+  // chunkFilename是未被列在entry中，却又需要被打包的文件命名配置，例如异步加载的模块等等( require.ensure()、import )
   output: {
     path: path.resolve(ROOT, 'dist'), // 也可用占位符
     filename: 'bundle.[hash:8].js',  // 可以使用一些占位符：name(模块名称)、hash(模块编译后的整体hash值)
