@@ -20,4 +20,9 @@
     font-weight: bold;
     font-size: 30px;
   }
+  div {
+    display: flex;
+    height: 50px;
+    align-items: center;
+  }
 </style>
