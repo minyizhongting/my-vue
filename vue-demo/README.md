@@ -1,5 +1,5 @@
 # vuejs webpack demo
-A simple vue & webpack demo.
+A simple vue & webpack v3 demo.
 
 ## Available scripts
 
