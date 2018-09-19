@@ -3,21 +3,22 @@
     <img :src="nourl" alt="">
   </div>
 </template>
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
 
-  import noUrl from '@/static/404.jpg';
-  import bgUrl from '@/static/bg.jpg';
+  const noUrl = require('@/static/404.jpg')
+  const bgUrl = require('@/static/bg.jpg')
 
-  export default {
-    name: 'NotFound',
-    data: function () {
-      return {
-        nourl: noUrl
-      }
-    },
+  @Component
+  export default class NotFound extends Vue {
+
+    nourl = noUrl
+
     mounted() {
       document.getElementsByTagName('body')[0].style.backgroundImage = 'url(' + bgUrl + ')';
-    },
+    }
+
     destroyed() {
       document.getElementsByTagName('body')[0].style.backgroundImage = '';
     }

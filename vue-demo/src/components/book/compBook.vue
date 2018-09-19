@@ -26,65 +26,75 @@
   </div>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {
-        lists: [
-          {
-            name: 'book 1',
-            price: 20,
-            count: 1
-          },
-          {
-            name: 'book 2',
-            price: 40,
-            count: 3
-          },
-          {
-            name: 'book 3',
-            price: 50,
-            count: 1
-          },
-          {
-            name: 'book 4',
-            price: 60,
-            count: 3
-          }
-        ],
-        total: 0
-      }
-    },
-    methods: {
-      handleAdd(list) {
-        list.count++;
-        this.$emit('calculate', this.totalPrice);
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
+
+  interface Item {
+    name: string,
+    price: number,
+    count: number
+  }
+
+  @Component
+  export default class compBook extends Vue {
+    lists: Item[] = [
+      {
+        name: 'book 1',
+        price: 20,
+        count: 1
       },
-      handleReduce(list) {
-        if (list.count <= 1) {
-          return;
-        }
-        list.count--;
-        this.$emit('calculate', this.totalPrice);
+      {
+        name: 'book 2',
+        price: 40,
+        count: 3
       },
-      handleDel(list) {
-        var idx = this.lists.indexOf(list);
-        this.lists.splice(idx, 1);
-        this.$emit('calculate', this.totalPrice);
+      {
+        name: 'book 3',
+        price: 50,
+        count: 1
+      },
+      {
+        name: 'book 4',
+        price: 60,
+        count: 3
       }
-    },
-    computed: {
-      totalPrice() {
-        var sum = 0;
-        for (var i = 0; i < this.lists.length; i++) {
-          sum += this.lists[i].price * this.lists[i].count;
-        }
-        return sum;
-      }
-    },
+    ]
+
+    total: number = 0
+
     mounted() {
       this.$emit('calculate', this.totalPrice);
     }
+
+    handleAdd(list: Item) {
+      list.count++;
+      this.$emit('calculate', this.totalPrice);
+    }
+
+    handleReduce(list: Item) {
+      if (list.count <= 1) {
+        return;
+      }
+      list.count--;
+      this.$emit('calculate', this.totalPrice);
+    }
+
+    handleDel(list: Item) {
+      let idx = this.lists.indexOf(list);
+      this.lists.splice(idx, 1);
+      this.$emit('calculate', this.totalPrice);
+    }
+
+    // computed
+    get totalPrice(): number {
+      let sum = 0;
+      for (let i = 0; i < this.lists.length; i++) {
+        sum += this.lists[i].price * this.lists[i].count;
+      }
+      return sum;
+    }
+
   }
 
 </script>

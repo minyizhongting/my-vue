@@ -8,9 +8,13 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'compChild'
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
+
+  @Component
+  export default class compChild extends Vue{
+
   }
 </script>
 

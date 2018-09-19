@@ -8,20 +8,23 @@
   </div>
 </template>
 
-<script>
-  import compCity from '#/components/my/compCity.vue';
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
 
-  import compCalc from '#/components/my/compCalc.vue';
+  import compCity from '#/components/my/compCity.vue'
+  import compCalc from '#/components/my/compCalc.vue'
+  import compChild from '#/components/my/compChild.vue'
 
-  import compChild from '#/components/my/compChild.vue';
-
-  export default {
-    name: 'My', // 1.可以递归调用，2.便于调试 (有名字的组件有更友好的警告信息)
+  @Component({
     components: {
       compCity,
       compCalc,
       compChild
     }
+  })
+  export default class My extends Vue {
+
   }
 
 </script>

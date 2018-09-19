@@ -6,74 +6,76 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import axios from 'axios'
 
-  // import axios from 'axios';
+  import { Component, Prop, Watch } from 'vue-property-decorator'
 
-  export default {
-    name: 'cityList',
-    props: {
-      city: {
-        type: String,
-        required: true
-      }
-    },
-    data: function () {
-      return {
-        info: []
-      }
-    },
-    methods: {
-      getCities() {
-        var url = '/city/getCityList';
-        var _this = this;
+  interface CityInfo {
+    cityName: string,
+    cityId: string | number,
+    isChain: number
+  }
 
-        // ajax获取数据成功后会返回一个response对象，包含以下内容：
-        // {
-        // 	data: {},
-        // 	status: 200,
-        // 	statusText: 'OK',
-        // 	headers: {},
-        // 	config: {}
-        // }
+  @Component
+  export default class cityList extends Vue {
 
-        // 请求
-        // axios({
-        // 	method: 'post',
-        // 	url: '/user',
-        // 	data: {
-        // 		name: 'haha',
-        // 		info: 'aa'
-        // 	}
-        // });
+    @Prop()
+    city: string = ''
 
-        // axios.get(url).then((response) => {
-        this.$http.get(url).then((response) => {
-          console.log('get data success...');
-          var result = '';
-          var arr = response.data.result;
-          arr.forEach(function (item, idx) {
-            if (item.cityName == _this.city) {
-              result = JSON.stringify(item);
-              return false;
-            }
-          });
-          if (result) {
-            this.info = result;
-          } else {
-            this.info = 'no data';
+    info: CityInfo[] | string = ''
+
+    getCities() {
+      var url = '/city/getCityList';
+      var _this = this;
+
+      // ajax获取数据成功后会返回一个response对象，包含以下内容：
+      // {
+      // 	data: {},
+      // 	status: 200,
+      // 	statusText: 'OK',
+      // 	headers: {},
+      // 	config: {}
+      // }
+
+      // 请求
+      // axios({
+      // 	method: 'post',
+      // 	url: '/user',
+      // 	data: {
+      // 		name: 'haha',
+      // 		info: 'aa'
+      // 	}
+      // });
+
+      // axios.get(url).then((response) => {
+      axios.get(url).then((response: any) => {
+        console.log('get data success...');
+        let result = '';
+        let arr = response.data.result;
+        arr.forEach(function (item: CityInfo, idx: number) {
+          if (item.cityName == _this.city) {
+            result = JSON.stringify(item);
+            return false;
           }
-
-        }, (response) => {
-          console.error('get data error...');
         });
-      }
-    },
-    watch: {
-      city: function (newVal, oldVal) {
-        this.getCities();
-      }
+        if (result) {
+          this.info = result;
+        } else {
+          this.info = 'no data';
+        }
+
+      }, (response: any) => {
+        console.error('get data error...');
+      });
     }
+
+    @Watch('city')
+    function (newVal: string, oldVal: string) {
+      this.getCities();
+    }
+
   }
 
 

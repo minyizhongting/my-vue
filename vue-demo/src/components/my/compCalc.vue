@@ -7,23 +7,21 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
 
-  import {multi} from '@/static/math.js'; // Tree shaking
+  import {multi} from '@/static/math.ts'; // Tree shaking
 
-  export default {
-    name: 'compCalc',
-    data: function () {
-      return {
-        numa: 0,
-        numb: 0,
-        result: ''
-      }
-    },
-    methods: {
-      calc() {
-        this.result = multi(this.numa, this.numb);
-      }
+  @Component
+  export default class compCalc extends Vue{
+
+    numa: number = 0
+    numb: number = 0
+    result: number = 0
+
+    calc() {
+      this.result = multi(this.numa, this.numb);
     }
   }
 </script>

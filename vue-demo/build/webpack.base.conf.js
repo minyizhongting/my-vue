@@ -8,7 +8,7 @@ var SRC = require('../config/paths').SRC;
 module.exports = {
   mode: 'development',
   entry: [
-    ROOT + '/src/index.js'
+    ROOT + '/src/index.ts'
   ],
   // filename是对应于entry生成的文件名
   // chunkFilename是未被列在entry中，却又需要被打包的文件命名配置，例如异步加载的模块等等( require.ensure()、import )
@@ -19,6 +19,12 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+        options: { appendTsSuffixTo: [/\.vue$/] }
+      },
       {
         test: /\.css$/,
         use: [
@@ -100,7 +106,7 @@ module.exports = {
       '@': ROOT,	// 项目根目录
       '#': SRC 	// src目录
     },
-    extensions: ['.js', '.vue', '.json'] // 自动解析扩展名，使导入模块时可以不带扩展名
+    extensions: ['.js', '.vue', '.json', '.ts', '.tsx'] // 自动解析扩展名，使导入模块时可以不带扩展名
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -1,11 +1,14 @@
-export function square(x) {
-	return x * x;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function square(x) {
+    return x * x;
 }
-
-export function cube(x) {
-	return x * x * x;
+exports.square = square;
+function cube(x) {
+    return x * x * x;
 }
-
-export function multi(a, b) {
-	return a * b;
+exports.cube = cube;
+function multi(a, b) {
+    return a * b;
 }
+exports.multi = multi;

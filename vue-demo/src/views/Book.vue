@@ -6,25 +6,24 @@
 
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
 
-  import compBook from '#/components/book/compBook.vue';
+  import compBook from '#/components/book/compBook.vue'
 
-  export default {
-    name: 'Book',
-    data() {
-      return {
-        totalPriceResult: 0
-      }
-
-    },
+  @Component({
     components: {
       compBook
-    },
-    methods: {
-      calculateTotal(sum) {
-        this.totalPriceResult = sum;
-      }
+    }
+  })
+
+  export default class Book extends Vue {
+
+    totalPriceResult = 0
+
+    calculateTotal(sum: number) {
+      this.totalPriceResult = sum;
     }
   }
 </script>

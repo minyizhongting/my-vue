@@ -15,29 +15,30 @@
   </div>
 </template>
 
-<script>
-  import cityList from '#/components/my/cityList.vue';
+<script lang="ts">
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
 
-  import smileUrl from '@/static/smile.png';
+  import cityList from '#/components/my/cityList.vue'
+  const smileUrl = require('@/static/smile.png')
 
-  export default {
-    name: 'compCity',
-    data: function () {
-      return {
-        cityName: '',
-        param: '',
-        smileUrl: smileUrl
-      }
-    },
+  @Component({
     components: {
       cityList
-    },
-    methods: {
-      getCityInfo() {
-        this.param = this.cityName;
-        console.log('param: ', this.cityName);
-      }
     }
+  })
+
+  export default class compCity extends Vue{
+
+    cityName: string = ''
+    param: string = ''
+    smileUrl = smileUrl
+
+    getCityInfo() {
+      this.param = this.cityName;
+      console.log('param: ', this.cityName);
+    }
+
   }
 </script>
 
