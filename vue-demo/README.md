@@ -1,5 +1,5 @@
 # vue-demo
-A simple vue & webpack v4 demo.
+A simple vue & webpack4 demo.
 
 ## Available scripts
 
