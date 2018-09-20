@@ -4,21 +4,23 @@ import NotFound from '#/views/NotFound.vue'
 import My from '#/views/my.vue'
 import childA from '#/components/my/childA.vue'
 import childB from '#/components/my/childB.vue'
+import RequireFunction = __WebpackModuleApi.RequireFunction;
 
 export default [
   {
     path: '/',
     alias: '/home',
-    component: Home
+    // component: Home
 
     // 打包构建时，js包会非常大。可以根据不同路由，将组件分割成不同的代码库。当路由被访问时才加载对应组件。
-    // component(resolve) {
-    //   // require(['#/views/Home'], resolve);
-    //   // require.ensure([], function() {}, String)，此API的第三个参数是给这个模块命名，否则chunkFilename中的[name]是一个自动分配的、可读性差的id，最后生成的js文件名不友好
-    //   require.ensure(['#/views/Home'], function (require) {
-    //     require(['#/views/Home'], resolve);
-    //   }, 'home');
-    // }
+    component(resolve: any) {
+      // require(['#/views/Home'], resolve);
+      // require.ensure(paths,callback,errorCallback,chunkName)
+      // require.ensure([], function() {}, String)，此API的第四个参数是给这个模块命名，否则chunkFilename中的[name]是一个自动分配的、可读性差的id，最后生成的js文件名不友好
+      require.ensure(['#/views/Home'], function (require: RequireFunction) {
+        require(['#/views/Home'], resolve);
+      }, function() {}, 'home');
+    }
   },
   {
     path: '/my',
