@@ -20,6 +20,7 @@
   import { Component } from 'vue-property-decorator'
 
   import cityList from '#/components/my/cityList.vue'
+
   const smileUrl = require('@/static/smile.png')
 
   @Component({

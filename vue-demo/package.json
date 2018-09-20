@@ -12,6 +12,7 @@
   "author": "Baihe",
   "license": "ISC",
   "devDependencies": {
+    "@types/webpack-env": "^1.13.6",
     "axios": "^0.17.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

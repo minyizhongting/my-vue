@@ -6,10 +6,8 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import { Component } from 'vue-property-decorator'
 
-  @Component
-  export default class childB extends Vue {
+  export default Vue.extend({
 
-  }
+  })
 </script>

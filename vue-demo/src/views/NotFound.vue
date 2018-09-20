@@ -7,6 +7,10 @@
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
 
+  // import noUrl from '@/static/404.jpg'
+  // import bgUrl from '@/static/bg.jpg'
+
+  // 需引入@types/webpack-env
   const noUrl = require('@/static/404.jpg')
   const bgUrl = require('@/static/bg.jpg')
 

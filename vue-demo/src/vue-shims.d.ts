@@ -4,4 +4,5 @@ declare module '*.vue' {
   export default Vue
 }
 
-declare function require(string): string
+// declare function require(string): string
+

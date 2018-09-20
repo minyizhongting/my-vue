@@ -15,6 +15,17 @@
     msg = 'Home'
   }
 
+  // 不使用class
+  // export default Vue.extend({
+  //   data: function() {
+  //     return {
+  //       msg: 'Home'
+  //     }
+  //   }
+  // })
+
+
+  // 不使用typescript
   // export default {
   //   name: 'Home',
   //   data: function () {
