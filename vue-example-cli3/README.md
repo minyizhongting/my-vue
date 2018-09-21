@@ -1,5 +1,7 @@
 # vue-example-cli3
 
+> A vue.js project by vue-cli3
+
 ## Project setup
 ```
 npm install
