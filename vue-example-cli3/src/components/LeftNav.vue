@@ -29,7 +29,7 @@
         ]
       }
     },
-    mounted() {
+    create() {
       const self = this;
       list.forEach(function (value, index) {
         self.$set(self.navData[index], 'active', false);

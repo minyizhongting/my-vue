@@ -5,7 +5,7 @@ const routes = [
     meta: {
       title: '首页'
     },
-    component: (resolve) => require(['@/components/index'], resolve)
+    component: (resolve) => require(['@/components/Home'], resolve)
   },
   {
     path: '/mine',
@@ -13,7 +13,7 @@ const routes = [
     meta: {
       title: '我的'
     },
-    component: (resolve) => require(['@/components/mine/mine'], resolve)
+    component: (resolve) => require(['@/components/mine/Mine'], resolve)
   },
   {
     path: '/survey',
@@ -21,7 +21,7 @@ const routes = [
     meta: {
       title: '答题'
     },
-    component: (resolve) => require(['@/components/survey/survey'], resolve),
+    component: (resolve) => require(['@/components/survey/Survey'], resolve),
   },
   {
     path: '/survey/answer',
@@ -29,7 +29,7 @@ const routes = [
     meta: {
       title: '答题ing'
     },
-    component: (resolve) => require(['@/components/survey/answer'], resolve)
+    component: (resolve) => require(['@/components/survey/Answer'], resolve)
   },
   {
     path: '/survey/result',
@@ -37,7 +37,7 @@ const routes = [
     meta: {
       title: '答题结果'
     },
-    component: (resolve) => require(['@/components/survey/result'], resolve)
+    component: (resolve) => require(['@/components/survey/Result'], resolve)
   },
   {
     path: '/help',
@@ -45,7 +45,7 @@ const routes = [
     meta: {
       title: '帮助中心'
     },
-    component: (resolve) => require(['@/components/help/help'], resolve)
+    component: (resolve) => require(['@/components/help/Help'], resolve)
   }
 ];
 

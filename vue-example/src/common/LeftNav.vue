@@ -6,7 +6,7 @@
 
 <script>
   const list = ['/', '/mine', '/survey', '/help'];
-  import leftNav from '@/common/left-nav/nav';
+  import leftNav from '@/common/left-nav/Nav';
 
   export default {
     name: 'LeftNav',
@@ -29,7 +29,7 @@
         ]
       }
     },
-    mounted() {
+    created() {
       const self = this;
       list.forEach(function (value, index) {
         self.$set(self.navData[index], 'active', false);
