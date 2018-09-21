@@ -11,6 +11,7 @@
 * [vue-example-cli3](https://github.com/minyizhongting/my-vue/tree/master/vue-example-cli3)：同vue-example项目，使用vue-cli3搭建。
 
 
-其中，vue-demo是基于webpack4，对应webpack3的例子[点击此处](https://github.com/minyizhongting/my-vue/tree/webpack3)。
+vue-demo是基于webpack4，对应webpack3的版本[点击此处](https://github.com/minyizhongting/my-vue/tree/webpack3)。  
+vue-example-cli3添加了typescript的版本[点击此处](https://github.com/minyizhongting/my-vue/tree/example-ts)。
 
 

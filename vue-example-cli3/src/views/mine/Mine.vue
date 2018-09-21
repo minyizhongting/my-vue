@@ -66,8 +66,8 @@
     },
     methods: {
       addImage(e) {
-        var self = this;
-        var file = e.target.files[0];
+        const self = this;
+        let file = e.target.files[0];
         if (!file) {    // 上传后点击取消 未选择图片
           return;
         }
@@ -75,7 +75,7 @@
           alert('请上传小于2M的图片');
           return;
         }
-        // var formdata = new FormData();  // FormData可以异步上传一个二进制文件  提交服务器
+        // let formdata = new FormData();  // FormData可以异步上传一个二进制文件  提交服务器
         // formdata.append('file', file);
         // this.renderData.imgUrl = true;
 
@@ -90,22 +90,22 @@
         //
         // });
 
-        var reader = new FileReader();      // 预览本地文件
+        let reader = new FileReader();      // 预览本地文件
         reader.readAsDataURL(file);     // 将图片转成base64编码，替换到预览图片的src属性即可
         reader.onload = function (arg) {
-          var img = new Image();
+          let img = new Image();
           img.src = arg.target.result;
-          var info = [];
+          let info = [];
           new Promise(function (resolve, reject) {
             if (img.complete) {
-              var w = img.naturalWidth;
-              var h = img.naturalHeight;
+              let w = img.naturalWidth;
+              let h = img.naturalHeight;
               info = [w, h, arg.target.result];
               resolve(info);
             } else {
               img.onload = function () {
-                var w = img.naturalWidth;
-                var h = img.naturalHeight;
+                let w = img.naturalWidth;
+                let h = img.naturalHeight;
                 info = [w, h, arg.target.result];
                 resolve(info);
               };
@@ -117,8 +117,8 @@
       },
       // 设置图片横向纵向样式
       setPicStyle(w, h, src) {
-        var self = this;
-        var rate = 210 / 115;
+        const self = this;
+        const rate = 210 / 115;
         if (w / h > rate) {
           self.renderData.imgStyle = 'x-aspect';
         } else {

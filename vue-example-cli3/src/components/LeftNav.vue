@@ -6,7 +6,7 @@
 
 <script>
   const list = ['/', '/mine', '/survey', '/help'];
-  import leftNav from '@/components/left-nav/nav';
+  import leftNav from '@/components/left-nav/Nav';
 
   export default {
     name: 'LeftNav',

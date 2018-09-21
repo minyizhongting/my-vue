@@ -94,7 +94,7 @@ const survey = {
       return state.questionNum == state.questionDetail.length;
     },
     getWholeTime: state => {
-      var time = ((state.endTime - state.beginTime) / 1000).toFixed(2);
+      let time = ((state.endTime - state.beginTime) / 1000).toFixed(2);
       return time;
     }
   },
