@@ -1,4 +1,4 @@
-# vue-demo
+# vue-example
 
 > A Vue.js project by vue-cli2
 
