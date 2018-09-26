@@ -33,7 +33,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { State, Getter, Action, Mutation } from 'vuex-class';
+  // import { State, Getter, Action, Mutation } from 'vuex-class';
 
   interface Todos{
     id: number,
@@ -46,11 +46,33 @@
     msg: string = 'vuex simple demo';
     asyncNum: number = 0;
 
-    @State count: number;
-    @Getter doneTodos: Todos[];
-    @Getter doneTodosCount: number;
-    @Mutation increment: () => void;
-    @Action incrementAsync: () => void;
+    // 使用vuex-class
+    // @State count: number;
+    // @Getter doneTodos: Todos[];
+    // @Getter doneTodosCount: number;
+    // @Mutation increment: () => void;
+    // @Action incrementAsync: () => void;
+
+    // 不使用vuex-class
+    get count(): number {
+      return this.$store.state.count;
+    }
+
+    get doneTodos(): Todos[] {
+      return this.$store.getters.doneTodos;
+    }
+
+    get doneTodosCount(): number {
+      return this.$store.getters.doneTodosCount;
+    }
+
+    increment() {
+      this.$store.commit('increment', 2);
+    }
+
+    incrementAsync() {
+      this.$store.dispatch('incrementAsync', 2);
+    }
 
     timeout(seconds: number) {
       return new Promise((resolve, reject) => {

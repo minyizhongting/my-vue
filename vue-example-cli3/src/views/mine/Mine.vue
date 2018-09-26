@@ -112,7 +112,7 @@
       reader.onload = function (arg: any) {
         const img = new Image();
         img.src = arg.target.result;
-        new Promise<ImgInfo>(function (resolve: any) {
+        new Promise<ImgInfo>(function (resolve) {
           if (img.complete) {
             let w = img.naturalWidth;
             let h = img.naturalHeight;

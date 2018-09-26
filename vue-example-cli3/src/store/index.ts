@@ -27,23 +27,23 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    doneTodos: (state: any): Todos[] => {
+    doneTodos: (state): Todos[] => {
       return state.todos.filter((todo: Todos) => todo.done);
     },
-    doneTodosCount: (state: any, getters: any): number => {
+    doneTodosCount: (state, getters): number => {
 
       return getters.doneTodos.length;
     }
   },
 
   mutations: {
-    increment(state: any, n: number) {    // es6 使用常量作为函数名
+    increment(state, n: number) {    // es6 使用常量作为函数名
       state.count += n;
     }
   },
 
   actions: {
-    incrementAsync(context: any, n: number) {
+    incrementAsync(context, n: number) {
       setTimeout(function () {
         context.commit('increment', n);
       }, 1000);
