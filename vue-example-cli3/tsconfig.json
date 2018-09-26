@@ -12,6 +12,7 @@
     "sourceMap": true,
     "strictPropertyInitialization": false,
     "baseUrl": ".",
+    "noImplicitAny": false,
     "types": [
       "node"
     ],

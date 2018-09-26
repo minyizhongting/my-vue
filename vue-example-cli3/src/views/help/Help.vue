@@ -33,7 +33,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  // import { State, Getter, Action, Mutation } from 'vuex-class';
+  import { State, Getter, Action, Mutation, namespace } from 'vuex-class';
 
   interface Todos{
     id: number,
@@ -41,38 +41,49 @@
     done: boolean
   }
 
+  const helpModule = namespace('help');
+
   @Component
   export default class Help extends Vue {
     msg: string = 'vuex simple demo';
     asyncNum: number = 0;
 
     // 使用vuex-class
+    // 使用vuex的模块的写法，注意需要将namespaced设置为true
+    @helpModule.State('count') count: number;
+    @helpModule.Getter('doneTodos') doneTodos: Todos[];
+    @helpModule.Getter('doneTodosCount') doneTodosCount: number;
+    @helpModule.Mutation('increment') increment: void;
+    @helpModule.Action('incrementAsync') incrementAsync: void;
+
+    // 不使用模块时的写法
     // @State count: number;
     // @Getter doneTodos: Todos[];
     // @Getter doneTodosCount: number;
     // @Mutation increment: () => void;
     // @Action incrementAsync: () => void;
 
+
     // 不使用vuex-class
-    get count(): number {
-      return this.$store.state.count;
-    }
-
-    get doneTodos(): Todos[] {
-      return this.$store.getters.doneTodos;
-    }
-
-    get doneTodosCount(): number {
-      return this.$store.getters.doneTodosCount;
-    }
-
-    increment() {
-      this.$store.commit('increment', 2);
-    }
-
-    incrementAsync() {
-      this.$store.dispatch('incrementAsync', 2);
-    }
+    // get count(): number {
+    //   return this.$store.state.help.count;
+    // }
+    //
+    // get doneTodos(): Todos[] {
+    //   return this.$store.getters.doneTodos;
+    // }
+    //
+    // get doneTodosCount(): number {
+    //   return this.$store.getters.doneTodosCount;
+    // }
+    //
+    // increment() {
+    //   this.$store.commit('increment', 2);
+    // }
+    //
+    // incrementAsync() {
+    //   this.$store.dispatch('incrementAsync', 2);
+    // }
 
     timeout(seconds: number) {
       return new Promise((resolve, reject) => {

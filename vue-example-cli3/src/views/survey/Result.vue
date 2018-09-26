@@ -1,0 +1,67 @@
+<template>
+  <div class="bh-con bh-result">
+    <div class="resultbox">
+      <div class="text">
+        <p class="score">您的得分是：{{wholeScore}}分</p>
+        <p class="time">答题用时：{{getWholeTime}}秒</p>
+      </div>
+      <com-button type="main" @click="goSurvey">再试一次</com-button>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+  import ComButton from '@/components/ComButton.vue';
+  import { Component, Vue } from 'vue-property-decorator';
+  import { State, Getter, Mutation, Action, namespace } from 'vuex-class';
+
+  const surveyModule = namespace('survey');
+
+  @Component({
+    components: {
+      ComButton
+    }
+  })
+
+  export default class Result extends Vue {
+    @surveyModule.State('wholeScore') wholeScore: number;
+    @surveyModule.Getter('getWholeTime') getWholeTime: number;
+    @surveyModule.Mutation('resetData') resetData: Function;
+
+    goSurvey() {
+      this.$router.push({path: '/survey'});
+    }
+  }
+
+</script>
+
+<style lang="scss">
+  @import '../../libs/scss/common.scss';
+
+  .bh-result {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+  }
+
+  .resultbox {
+    width: 300px;
+    height: 500px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    .text {
+      width: 90%;
+      margin: 0 auto;
+      padding-left: 20px;
+      p {
+        padding: 10px 0;
+      }
+    }
+    button {
+      margin: 0 auto;
+      width: 120px;
+    }
+  }
+</style>
