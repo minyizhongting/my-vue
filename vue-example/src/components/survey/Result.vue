@@ -5,7 +5,7 @@
         <p class="score">您的得分是：{{wholeScore}}分</p>
         <p class="time">答题用时：{{getWholeTime}}秒</p>
       </div>
-      <com-button @click="goSurvey">再试一次</com-button>
+      <com-button type="main" @click="goSurvey">再试一次</com-button>
     </div>
   </div>
 </template>
